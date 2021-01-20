@@ -1,6 +1,6 @@
 package banking;
 
-public class PIN {
+public class PIN implements ReferenceNumber {
     private int[] digits;
 
     public PIN() {
@@ -22,9 +22,9 @@ public class PIN {
         return digits[index];
     }
 
-    public static boolean comparePINs(PIN first, PIN second) {
+    public boolean comparePINs(int[] comparator) {
         for (int i = 0; i < 4; i++) {
-            if (first.getDigit(i) != first.getDigit(i)) {
+            if (this.digits[i] != comparator[i]) {
                 return false;
             }
         }

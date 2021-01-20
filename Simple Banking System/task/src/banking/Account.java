@@ -14,6 +14,7 @@ public class Account {
         this.accountNumber = new AccountNumber(accountList);
         this.pin = new PIN();
         this.checkDigit = 1;
+
     }
 
     public AccountNumber getAccountNumber() {
@@ -34,5 +35,17 @@ public class Account {
         System.out.println("Your card PIN:");
         System.out.println(this.pin.toString());
         System.out.println();
+    }
+
+    public boolean logInSuccess(int[] accountNumberTry, int[] pinTry) {
+        return accountNumber.compareNumbers(accountNumberTry) && this.pin.comparePINs(pinTry);
+    }
+
+    public static int[] extractAccountNumFromCardNum(int[] cardNumber) {
+        int[] accountNumber = new int[9];
+        for (int i = 6; i < 15; i++) {
+            accountNumber[i - 6] = cardNumber[i];
+        }
+        return accountNumber;
     }
 }

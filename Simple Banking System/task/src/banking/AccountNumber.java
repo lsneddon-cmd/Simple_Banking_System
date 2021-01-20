@@ -1,6 +1,5 @@
 package banking;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class AccountNumber {
@@ -25,6 +24,15 @@ public class AccountNumber {
     private static boolean checkUniqueAccountNumber(List<Account> accounts, int[] number) {
         for (Account acc : accounts) {
             if (acc.getAccountNumber().equals(number)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean compareNumbers(int[] comparator) {
+        for (int i = 0; i < 4; i++) {
+            if (this.number[i] != comparator[i]) {
                 return false;
             }
         }
