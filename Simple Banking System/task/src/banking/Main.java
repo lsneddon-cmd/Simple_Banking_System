@@ -22,11 +22,39 @@ public class Main {
                         createNewAccount(accounts);
                         break;
                     case LOGIN:
-                        logIntoAccount(accounts, scanner);
+                        if (logIntoAccount(accounts, scanner)) {
+                            System.out.println("\nYou have successfully logged in!\n");
+                            accountMenu(scanner);
+                        } else {
+                            System.out.println("\nWrong card number or PIN!\n");
+                        }
                         break;
                     case EXIT:
-                        System.out.println("goodbye");
+                        System.out.println("Bye!");
+                        System.exit(0);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Inappropriate input");
+            }
+        }
+    }
+
+    public static void accountMenu(Scanner scanner) {
+        AccountMenu choice;
+        while(true) {
+            try {
+                AccountMenu.printMenu();
+                choice = AccountMenu.values()[Integer.parseInt(scanner.nextLine())];
+                switch (choice) {
+                    case BALANCE:
+                        System.out.println("Balance: 0");;
+                        break;
+                    case LOGOUT:
+                        System.out.println("You have successfully logged out");
                         return;
+                    case EXIT:
+                        System.out.println("Bye!");
+                        System.exit(0);
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Inappropriate input");
@@ -48,11 +76,9 @@ public class Main {
 
         for (Account acc : accountList) {
             if (acc.logInSuccess(accNumber, accPIN)) {
-                System.out.println("\nYou have successfully logged in!\n");
                 return true;
             }
         }
-        System.out.println("\nWrong card number or PIN!\n");
         return false;
     }
 

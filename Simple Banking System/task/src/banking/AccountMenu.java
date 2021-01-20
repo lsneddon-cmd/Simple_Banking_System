@@ -2,14 +2,14 @@ package banking;
 
 import java.util.EnumSet;
 
-public enum MainMenu {
+public enum AccountMenu {
     EXIT("0. Exit"),
-    NEW("1. Create an account"),
-    LOGIN("2. Log into account");
+    BALANCE("1. Balance"),
+    LOGOUT("2. Log out");
 
     private final String menuDefinition;
 
-    MainMenu(String menuDefinition) {
+    AccountMenu(String menuDefinition) {
         this.menuDefinition = menuDefinition;
     }
 
@@ -18,9 +18,7 @@ public enum MainMenu {
     }
 
     public static void printMenu() {
-        EnumSet.allOf(MainMenu.class)
+        EnumSet.allOf(AccountMenu.class)
                 .forEach(item -> System.out.println(item.getMenuDefinition()));
     }
-
-
 }
