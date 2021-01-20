@@ -1,5 +1,6 @@
 package banking;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class AccountNumber {
@@ -15,8 +16,8 @@ public class AccountNumber {
 
     private int[] generateAccountNumber() {
         int[] res = new int[9];
-        for (int digit : res) {
-            digit = (int) (Math.random() * 10);
+        for (int i = 0; i < 9; i++) {
+            res[i] = (int) (Math.random() * 10);
         }
         return res;
     }
@@ -30,4 +31,12 @@ public class AccountNumber {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int digit : this.number) {
+            sb.append(digit);
+        }
+        return sb.toString();
+    }
 }

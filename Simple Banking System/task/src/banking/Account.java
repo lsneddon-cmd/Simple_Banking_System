@@ -24,9 +24,15 @@ public class Account {
     public String toString() {
         return  "" +
                 INN +
-                accountNumber +
-                pin +
+                accountNumber.toString() +
                 checkDigit;
     }
 
+    public void printDetails() {
+        System.out.println("Your card number:");
+        System.out.println(this.toString());
+        System.out.println("Your card PIN:");
+        System.out.println(this.pin.toString());
+        System.out.println();
+    }
 }

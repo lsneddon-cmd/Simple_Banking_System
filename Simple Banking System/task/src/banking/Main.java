@@ -17,8 +17,8 @@ public class Main {
                 choice = MainMenu.values()[scanner.nextInt()];
                 switch (choice) {
                     case NEW:
-                        System.out.println("new account");
-                        return;
+                        createNewAccount(accounts);
+                        break;
                     case LOGIN:
                         System.out.println("login to account");
                         return;
@@ -29,8 +29,15 @@ public class Main {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Inappropriate input");
             }
-
         }
-
     }
+
+    public static void createNewAccount(List<Account> accountsList) {
+        System.out.println("\nYour card has been created");
+        Account generatedAccount = new Account(accountsList);
+        generatedAccount.printDetails();
+        accountsList.add(generatedAccount);
+    }
+
+
 }

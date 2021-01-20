@@ -1,7 +1,7 @@
 package banking;
 
 public class PIN {
-    private final int[] digits;
+    private int[] digits;
 
     public PIN() {
         digits = new int[4];
@@ -13,8 +13,8 @@ public class PIN {
     }
 
     private void generatePIN() {
-        for (int digit: digits) {
-            digit = (int) (Math.random() * 10);
+        for (int i = 0; i < 4; i++) {
+            digits[i] = (int) (Math.random() * 10);
         }
     }
 
@@ -29,5 +29,14 @@ public class PIN {
             }
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int digit : this.digits) {
+            sb.append(digit);
+        }
+        return sb.toString();
     }
 }
