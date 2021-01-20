@@ -7,7 +7,7 @@ public class Account {
     private final int INN;
     private final AccountNumber accountNumber;
     private PIN pin;
-    private final int checkDigit;
+    private int checkDigit;
 
     private double balance;
 
@@ -15,8 +15,9 @@ public class Account {
         this.INN = 400000;
         this.accountNumber = new AccountNumber(accountList);
         this.pin = new PIN();
-        this.checkDigit = 1;
         this.balance = 0;
+        this.checkDigit = 0;
+
     }
 
     public AccountNumber getAccountNumber() {

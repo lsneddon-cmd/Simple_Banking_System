@@ -21,6 +21,10 @@ public class AccountNumber implements NumberAsIntArray {
         return res;
     }
 
+    public int[] getDigits() {
+        return digits;
+    }
+
     private static boolean checkUniqueAccountNumber(List<Account> accounts, int[] number) {
         for (Account acc : accounts) {
             if (acc.getAccountNumber().equals(number)) {
