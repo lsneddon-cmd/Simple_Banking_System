@@ -2,15 +2,15 @@ package banking;
 
 import java.util.List;
 
-public class AccountNumber {
-    private final int[] number;
+public class AccountNumber implements NumberAsIntArray {
+    private final int[] digits;
 
     public AccountNumber(List<Account> accounts) {
         int[] temp = generateAccountNumber();
         while (!checkUniqueAccountNumber(accounts, temp)) {
             temp = generateAccountNumber();
         }
-        this.number = temp;
+        this.digits = temp;
     }
 
     private int[] generateAccountNumber() {
@@ -32,19 +32,23 @@ public class AccountNumber {
 
     public boolean compareNumbers(int[] comparator) {
         for (int i = 0; i < 4; i++) {
-            if (this.number[i] != comparator[i]) {
+            if (this.digits[i] != comparator[i]) {
                 return false;
             }
         }
         return true;
     }
 
-    @Override
-    public String toString() {
+    public String flattenAsString() {
         StringBuilder sb = new StringBuilder();
-        for (int digit : this.number) {
+        for (int digit : this.digits) {
             sb.append(digit);
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return flattenAsString();
     }
 }

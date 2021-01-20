@@ -1,15 +1,11 @@
 package banking;
 
-public class PIN implements ReferenceNumber {
+public class PIN implements NumberAsIntArray {
     private int[] digits;
 
     public PIN() {
         digits = new int[4];
         generatePIN();
-    }
-
-    public PIN(int a, int b, int c, int d) {
-        this.digits = new int[] {a, b, c, d};
     }
 
     private void generatePIN() {
@@ -18,11 +14,7 @@ public class PIN implements ReferenceNumber {
         }
     }
 
-    public int getDigit(int index) {
-        return digits[index];
-    }
-
-    public boolean comparePINs(int[] comparator) {
+    public boolean compareNumbers(int[] comparator) {
         for (int i = 0; i < 4; i++) {
             if (this.digits[i] != comparator[i]) {
                 return false;
@@ -31,12 +23,16 @@ public class PIN implements ReferenceNumber {
         return true;
     }
 
-    @Override
-    public String toString() {
+    public String flattenAsString() {
         StringBuilder sb = new StringBuilder();
         for (int digit : this.digits) {
             sb.append(digit);
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return flattenAsString();
     }
 }
