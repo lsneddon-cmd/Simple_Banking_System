@@ -13,11 +13,12 @@ public class Account {
 
     public Account(List<Account> accountList) {
         this.INN = 400000;
-        this.accountNumber = new AccountNumber(accountList);
+        AccountNumber accNum = new AccountNumber(accountList);
+        this.accountNumber = accNum;
         this.pin = new PIN();
         this.balance = 0;
-        this.checkDigit = 0;
-
+        LuhnGenerator generator = new LuhnGenerator(accNum.getDigits());
+        this.checkDigit = generator.getCheckSum();
     }
 
     public AccountNumber getAccountNumber() {
