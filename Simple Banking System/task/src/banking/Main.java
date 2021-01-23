@@ -1,13 +1,11 @@
 package banking;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        List<Account> accounts = new LinkedList<>();
+        Set<Account> accounts = new HashSet<>();
         Scanner scanner = new Scanner(System.in);
 
         Menu.mainMenu(scanner, accounts);

@@ -1,13 +1,13 @@
 package banking;
 
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class AccountNumber {
     private final int[] digits;
     private final int accountNumberSize = 9;
 
-    public AccountNumber(List<Account> accounts) {
+    public AccountNumber(Set<Account> accounts) {
         int[] temp = generateAccountNumber();
         while (!checkUniqueAccountNumber(accounts, temp)) {
             temp = generateAccountNumber();
@@ -25,7 +25,7 @@ public class AccountNumber {
         return digits;
     }
 
-    private static boolean checkUniqueAccountNumber(List<Account> accounts, int[] number) {
+    private static boolean checkUniqueAccountNumber(Set<Account> accounts, int[] number) {
         return accounts
                 .stream()
                 .noneMatch(account -> account.getAccountNumber().equals(number));

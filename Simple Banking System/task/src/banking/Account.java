@@ -1,7 +1,7 @@
 package banking;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 public class Account {
 
@@ -12,7 +12,7 @@ public class Account {
 
     private double balance;
 
-    public Account(List<Account> accountList) {
+    public Account(Set<Account> accountList) {
         this.accountNumber = new AccountNumber(accountList);
         this.pin = new PIN();
         this.balance = 0;
@@ -52,7 +52,7 @@ public class Account {
         return Arrays.copyOfRange(cardNumber, 6, 15);
     }
 
-    public static void createNewAccount(List<Account> accountList) {
+    public static void createNewAccount(Set<Account> accountList) {
         System.out.println("\nYour card has been created");
         Account generatedAccount = new Account(accountList);
         generatedAccount.printDetails();

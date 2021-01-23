@@ -1,10 +1,10 @@
 package banking;
 
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Menu {
-    public static void mainMenu(Scanner scanner, List<Account> accounts) {
+    public static void mainMenu(Scanner scanner, Set<Account> accounts) {
         MainMenu choice;
         while(true) {
             try {
