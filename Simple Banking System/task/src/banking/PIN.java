@@ -17,6 +17,10 @@ public class PIN {
     }
 
     public void setDigits(String newPin, String newPinAgain) {
+        // TODO prevent PINs being set with other than 0-9 integers
+        if (newPin.length() != 4 || newPinAgain.length() != 4) {
+            throw new IllegalArgumentException("PIN must be 4 digits long");
+        }
         int[] newPinArr =
                 Arrays.stream(newPin.split(""))
                     .mapToInt(Integer::parseInt)
