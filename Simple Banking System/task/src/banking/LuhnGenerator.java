@@ -20,7 +20,7 @@ public class LuhnGenerator {
         this.checkSum = calculateCheckSum(this.controlNumber);
     }
 
-    public static int calculateControlNumber(int[] numbers) {
+    private static int calculateControlNumber(int[] numbers) {
         int[] calculations = new int[numbers.length];
 
         for (int i = numbers.length - 1; i >= 0; i-=2) {
@@ -38,12 +38,20 @@ public class LuhnGenerator {
         return Arrays.stream(calculations).sum();
     }
 
-    public static int calculateCheckSum(int control) {
+    private static int calculateCheckSum(int control) {
         return control % 10 == 0 ? 0 : 10 - control % 10;
     }
 
     public int getCheckSum() {
         return checkSum;
+    }
+
+    public static boolean validateCheckSum(int[] cardNumber) {
+        int[] numberMinusLast = new int[cardNumber.length - 1];
+        for (int i = 0; i < cardNumber.length - 1; i++) {
+            numberMinusLast[i] = cardNumber[i];
+        }
+        return cardNumber[15] == calculateCheckSum(calculateControlNumber(numberMinusLast));
     }
 
 }
