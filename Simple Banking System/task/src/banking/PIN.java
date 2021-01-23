@@ -18,11 +18,11 @@ public class PIN {
 
     public void setDigits(String newPin, String newPinAgain) {
         int[] newPinArr =
-                Arrays.stream(Integer.valueOf(newPin).toString().split(""))
+                Arrays.stream(newPin.split(""))
                     .mapToInt(Integer::parseInt)
                     .toArray();
         int[] newPinArrAgain =
-                Arrays.stream(Integer.valueOf(newPinAgain).toString().split(""))
+                Arrays.stream(newPinAgain.split(""))
                     .mapToInt(Integer::parseInt)
                     .toArray();
         if (Arrays.equals(newPinArr, newPinArrAgain)) {
