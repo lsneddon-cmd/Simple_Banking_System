@@ -2,23 +2,7 @@ package banking;
 
 import java.util.Arrays;
 
-public class LuhnGenerator {
-    private int[] digits;
-    private int controlNumber;
-    private int checkSum;
-
-    public LuhnGenerator(int[] acc) {
-        digits = new int[15];
-        digits[0] = 4;
-        for (int i = 1; i < 6; i++) {
-            digits[i] = 0;
-        }
-        for (int i = 6; i < 15; i++) {
-            digits[i] = acc[i - 6];
-        }
-        this.controlNumber = calculateControlNumber(digits);
-        this.checkSum = calculateCheckSum(this.controlNumber);
-    }
+public class LuhnCalculator {
 
     private static int calculateControlNumber(int[] numbers) {
         int[] calculations = new int[numbers.length];
@@ -42,16 +26,23 @@ public class LuhnGenerator {
         return control % 10 == 0 ? 0 : 10 - control % 10;
     }
 
-    public int getCheckSum() {
-        return checkSum;
+    public static int getCheckSum(int INN, int[] accNum) {
+        int[] concatNum = new int[accNum.length + 6];
+
+        int[] inn =
+                Arrays.stream(Integer.valueOf(INN).toString().split(""))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+
+        System.arraycopy(inn, 0, concatNum, 0, 5);
+        System.arraycopy(accNum, 0, concatNum, 6, 9);
+
+        return calculateCheckSum(calculateControlNumber(concatNum));
     }
 
     public static boolean validateCheckSum(int[] cardNumber) {
         int[] numberMinusLast = new int[cardNumber.length - 1];
-        for (int i = 0; i < cardNumber.length - 1; i++) {
-            numberMinusLast[i] = cardNumber[i];
-        }
+        System.arraycopy(cardNumber, 0,numberMinusLast, 0, cardNumber.length - 1);
         return cardNumber[15] == calculateCheckSum(calculateControlNumber(numberMinusLast));
     }
-
 }

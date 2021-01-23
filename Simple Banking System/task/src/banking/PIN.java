@@ -1,38 +1,43 @@
 package banking;
 
-public class PIN implements NumberAsIntArray {
+import java.util.Arrays;
+import java.util.Random;
+
+public class PIN {
     private int[] digits;
 
     public PIN() {
-        digits = new int[4];
-        generatePIN();
+        this.digits = new Random()
+                .ints(4, 0, 9)
+                .toArray();
     }
 
-    private void generatePIN() {
-        for (int i = 0; i < 4; i++) {
-            digits[i] = (int) (Math.random() * 10);
+    public int[] getDigits() {
+        return digits;
+    }
+
+    public void setDigits(String newPin, String newPinAgain) {
+        int[] newPinArr =
+                Arrays.stream(Integer.valueOf(newPin).toString().split(""))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+        int[] newPinArrAgain =
+                Arrays.stream(Integer.valueOf(newPinAgain).toString().split(""))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+        if (Arrays.equals(newPinArr, newPinArrAgain)) {
+            this.digits = newPinArr;
+        } else {
+            throw new IllegalArgumentException("Both PINs must match\nTry again.");
         }
     }
 
-    public boolean compareNumbers(int[] comparator) {
-        for (int i = 0; i < 4; i++) {
-            if (this.digits[i] != comparator[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public String flattenAsString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int digit : this.digits) {
             sb.append(digit);
         }
         return sb.toString();
-    }
-
-    @Override
-    public String toString() {
-        return flattenAsString();
     }
 }

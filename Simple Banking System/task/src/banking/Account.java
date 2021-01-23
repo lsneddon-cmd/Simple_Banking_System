@@ -1,24 +1,22 @@
 package banking;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Account {
 
-    private final int INN;
+    private final int INN = 400000;
     private final AccountNumber accountNumber;
-    private PIN pin;
-    private int checkDigit;
+    private final PIN pin;
+    private final int checkDigit;
 
     private double balance;
 
     public Account(List<Account> accountList) {
-        this.INN = 400000;
-        AccountNumber accNum = new AccountNumber(accountList);
-        this.accountNumber = accNum;
+        this.accountNumber = new AccountNumber(accountList);
         this.pin = new PIN();
         this.balance = 0;
-        LuhnGenerator generator = new LuhnGenerator(accNum.getDigits());
-        this.checkDigit = generator.getCheckSum();
+        this.checkDigit = LuhnCalculator.getCheckSum(this.INN, this.accountNumber.getDigits());
     }
 
     public AccountNumber getAccountNumber() {
@@ -46,15 +44,12 @@ public class Account {
     }
 
     public boolean logInSuccess(int[] accountNumberTry, int[] pinTry) {
-        return accountNumber.compareNumbers(accountNumberTry) && this.pin.compareNumbers(pinTry);
+        return Arrays.equals(accountNumber.getDigits(), accountNumberTry)
+                && Arrays.equals(this.pin.getDigits(), pinTry);
     }
 
     public static int[] extractAccountNumFromCardNum(int[] cardNumber) {
-        int[] accountNumber = new int[9];
-        for (int i = 6; i < 15; i++) {
-            accountNumber[i - 6] = cardNumber[i];
-        }
-        return accountNumber;
+        return Arrays.copyOfRange(cardNumber, 6, 15);
     }
 
     public static void createNewAccount(List<Account> accountList) {

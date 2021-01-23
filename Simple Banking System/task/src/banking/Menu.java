@@ -29,7 +29,6 @@ public class Menu {
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Inappropriate input");
-                e.printStackTrace();
             }
         }
     }
