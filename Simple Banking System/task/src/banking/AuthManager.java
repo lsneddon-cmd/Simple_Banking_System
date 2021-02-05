@@ -1,15 +1,14 @@
 package banking;
 
 import java.util.Scanner;
-import java.util.Set;
 
 public class AuthManager {
-    public static Account logIntoAccount(Set<Account> accountList, Scanner scanner) {
+    public static Account logIntoAccount(Scanner scanner) {
         int[] cardNumber = enterAccountNumber(scanner);
         int[] accNumber = Account.extractAccountNumFromCardNum(cardNumber);
         int[] accPIN = enterPinNumber(scanner);
 
-        for (Account acc : accountList) {
+        for (Account acc : Account.accountSet) {
             if (acc.logInSuccess(accNumber, accPIN)) {
                 return acc;
             }

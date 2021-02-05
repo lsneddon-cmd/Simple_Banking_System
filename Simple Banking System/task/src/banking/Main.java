@@ -8,6 +8,6 @@ public class Main {
         Set<Account> accounts = new HashSet<>();
         Scanner scanner = new Scanner(System.in);
 
-        Menu.mainMenu(scanner, accounts);
+        Menu.mainMenu(scanner);
     }
 }

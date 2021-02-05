@@ -1,10 +1,9 @@
 package banking;
 
 import java.util.Scanner;
-import java.util.Set;
 
 public class Menu {
-    public static void mainMenu(Scanner scanner, Set<Account> accounts) {
+    public static void mainMenu(Scanner scanner) {
         MainMenu choice;
         while(true) {
             try {
@@ -12,10 +11,10 @@ public class Menu {
                 choice = MainMenu.values()[Integer.parseInt(scanner.nextLine())];
                 switch (choice) {
                     case NEW:
-                        Account.createNewAccount(accounts);
+                        Account.createNewAccount();
                         break;
                     case LOGIN:
-                        Account current = AuthManager.logIntoAccount(accounts, scanner);
+                        Account current = AuthManager.logIntoAccount(scanner);
                         if (current != null) {
                             System.out.println("\nYou have successfully logged in!\n");
                             accountMenu(scanner, current);

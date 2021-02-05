@@ -1,15 +1,14 @@
 package banking;
 
 import java.util.Random;
-import java.util.Set;
 
 public class AccountNumber {
     private final int[] digits;
     private final int accountNumberSize = 9;
 
-    public AccountNumber(Set<Account> accounts) {
+    public AccountNumber() {
         int[] temp = generateAccountNumber();
-        while (!checkUniqueAccountNumber(accounts, temp)) {
+        while (!checkUniqueAccountNumber(temp)) {
             temp = generateAccountNumber();
         }
         this.digits = temp;
@@ -25,8 +24,8 @@ public class AccountNumber {
         return digits;
     }
 
-    private static boolean checkUniqueAccountNumber(Set<Account> accounts, int[] number) {
-        return accounts
+    private static boolean checkUniqueAccountNumber(int[] number) {
+        return Account.accountSet
                 .stream()
                 .noneMatch(account -> account.getAccountNumber().equals(number));
     }

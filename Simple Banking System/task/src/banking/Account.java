@@ -1,9 +1,12 @@
 package banking;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Account {
+    
+    public static Set<Account> accountSet = new HashSet<>();
 
     private final int INN = 400000;
     private final AccountNumber accountNumber;
@@ -12,8 +15,8 @@ public class Account {
 
     private double balance;
 
-    public Account(Set<Account> accountList) {
-        this.accountNumber = new AccountNumber(accountList);
+    public Account() {
+        this.accountNumber = new AccountNumber();
         this.pin = new PIN();
         this.balance = 0;
         this.checkDigit = LuhnCalculator.getCheckSum(this.INN, this.accountNumber.getDigits());
@@ -52,10 +55,10 @@ public class Account {
         return Arrays.copyOfRange(cardNumber, 6, 15);
     }
 
-    public static void createNewAccount(Set<Account> accountList) {
+    public static void createNewAccount() {
         System.out.println("\nYour card has been created");
-        Account generatedAccount = new Account(accountList);
+        Account generatedAccount = new Account();
         generatedAccount.printDetails();
-        accountList.add(generatedAccount);
+        accountSet.add(generatedAccount);
     }
 }
