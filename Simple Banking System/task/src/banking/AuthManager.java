@@ -1,12 +1,10 @@
 package banking;
 
-import java.util.Scanner;
-
 public class AuthManager {
-    public static Account logIntoAccount(Scanner scanner) {
-        int[] cardNumber = enterAccountNumber(scanner);
+    public static Account logIntoAccount() {
+        int[] cardNumber = enterAccountNumber();
         int[] accNumber = Account.extractAccountNumFromCardNum(cardNumber);
-        int[] accPIN = enterPinNumber(scanner);
+        int[] accPIN = enterPinNumber();
 
         for (Account acc : Account.accountSet) {
             if (acc.logInSuccess(accNumber, accPIN)) {
@@ -16,16 +14,16 @@ public class AuthManager {
         return null;
     }
 
-    public static int[] enterAccountNumber(Scanner scanner) {
+    public static int[] enterAccountNumber() {
         System.out.println("\nEnter your card number:");
         System.out.print(">");
-        return parseStringAsIntArray(scanner.nextLine());
+        return parseStringAsIntArray(Main.scanner.nextLine());
     }
 
-    public static int[] enterPinNumber(Scanner scanner) {
+    public static int[] enterPinNumber() {
         System.out.println("Enter your PIN:");
         System.out.print(">");
-        return parseStringAsIntArray(scanner.nextLine());
+        return parseStringAsIntArray(Main.scanner.nextLine());
     }
 
     public static int[] parseStringAsIntArray(String input) {

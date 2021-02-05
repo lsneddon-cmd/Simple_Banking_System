@@ -1,23 +1,21 @@
 package banking;
 
-import java.util.Scanner;
-
 public class Menu {
-    public static void mainMenu(Scanner scanner) {
+    public static void mainMenu() {
         MainMenu choice;
         while(true) {
             try {
                 MainMenu.printMenu();
-                choice = MainMenu.values()[Integer.parseInt(scanner.nextLine())];
+                choice = MainMenu.values()[Integer.parseInt(Main.scanner.nextLine())];
                 switch (choice) {
                     case NEW:
                         Account.createNewAccount();
                         break;
                     case LOGIN:
-                        Account current = AuthManager.logIntoAccount(scanner);
+                        Account current = AuthManager.logIntoAccount();
                         if (current != null) {
                             System.out.println("\nYou have successfully logged in!\n");
-                            accountMenu(scanner, current);
+                            accountMenu(current);
                         } else {
                             System.out.println("\nWrong card number or PIN!\n");
                         }
@@ -32,12 +30,12 @@ public class Menu {
         }
     }
 
-    public static void accountMenu(Scanner scanner, Account account) {
+    public static void accountMenu(Account account) {
         AccountMenu choice;
         while(true) {
             try {
                 AccountMenu.printMenu();
-                choice = AccountMenu.values()[Integer.parseInt(scanner.nextLine())];
+                choice = AccountMenu.values()[Integer.parseInt(Main.scanner.nextLine())];
                 switch (choice) {
                     case BALANCE:
                         System.out.println("Balance: " + account.getBalance());;

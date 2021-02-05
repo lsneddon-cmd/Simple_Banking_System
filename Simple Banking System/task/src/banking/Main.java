@@ -3,11 +3,13 @@ package banking;
 import java.util.*;
 
 public class Main {
+
+    public final static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        Set<Account> accounts = new HashSet<>();
-        Scanner scanner = new Scanner(System.in);
+        Menu.mainMenu();
 
-        Menu.mainMenu(scanner);
+        // TODO Account numbers and Pins to be stored as Strings, not int[]
     }
 }
