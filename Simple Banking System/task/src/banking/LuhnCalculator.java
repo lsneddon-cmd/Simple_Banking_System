@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class LuhnCalculator {
 
     private static int calculateControlNumber(int[] numbers) {
+        // TODO replace raw loops with functional streams
         int[] calculations = new int[numbers.length];
 
         for (int i = numbers.length - 1; i >= 0; i-=2) {

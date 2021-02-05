@@ -9,6 +9,7 @@ public class Menu {
                 choice = MainMenu.values()[Integer.parseInt(Main.scanner.nextLine())];
                 switch (choice) {
                     case NEW:
+                        // TODO look at creational design patterns
                         Account.createNewAccount();
                         break;
                     case LOGIN:

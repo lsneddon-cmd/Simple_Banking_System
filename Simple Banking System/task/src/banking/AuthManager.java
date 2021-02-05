@@ -1,6 +1,9 @@
 package banking;
 
 public class AuthManager {
+
+    // TODO look at State design pattern for managing state of whether acc is logged in
+
     public static Account logIntoAccount() {
         int[] cardNumber = enterAccountNumber();
         int[] accNumber = Account.extractAccountNumFromCardNum(cardNumber);
